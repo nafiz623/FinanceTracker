@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- ======== LOGIN SCREEN ======== -->
+    <div id="login-screen" class="screen">
+        <div class="login-container">
+            <div class="login-header">
+                <i class="fas fa-wallet"></i>
+                <h1>Finance Tracker</h1>
+                <p>Sign in to manage your finances</p>
+            </div>
+            <form id="login-form">
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="email" placeholder="Email" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" placeholder="Password" required>
+                    <i class="fas fa-eye-slash" id="togglePassword"></i>
+                </div>
+                <div class="login-options">
+                    <label>
+                        <input type="checkbox" id="rememberMe"> Remember Me
+                    </label>
+                </div>
+                <button type="submit" class="login-button">Login</button>
+                <p id="login-error" class="error-message"></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- ======== MAIN APP SCREEN ======== -->
+    <div id="app-screen" class="screen hidden">
+        <header>
+            <div class="logo">
+                <i class="fas fa-wallet"></i>
+                <h1>Finance Tracker</h1>
+            </div>
+            <div class="header-controls">
+                <button id="dark-mode-toggle" class="icon-button"><i class="fas fa-moon"></i></button>
+                <button id="logout-button" class="icon-button"><i class="fas fa-sign-out-alt"></i></button>
+            </div>
+        </header>
+        
+        <main>
+            <!-- Financial Summary -->
+            <section class="summary-cards">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Total Balance</h3>
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <h2 id="total-balance">$0.00</h2>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Total Deposited</h3>
+                        <i class="fas fa-arrow-up green-icon"></i>
+                    </div>
+                    <h2 id="total-deposited">$0.00</h2>
+                    <p class="percentage-change" id="deposit-change">--% vs last month</p>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Total Spent</h3>
+                        <i class="fas fa-arrow-down red-icon"></i>
+                    </div>
+                    <h2 id="total-spent">$0.00</h2>
+                    <p class="percentage-change" id="spent-change">--% vs last month</p>
+                </div>
+            </section>
+
+            <!-- Transaction Form -->
+            <section class="transaction-form-section card">
+                <h3>Add New Transaction</h3>
+                <form id="transaction-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="amount">Amount ($)</label>
+                            <input type="number" id="amount" placeholder="e.g., 50.00" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <input type="text" id="description" placeholder="e.g., Groceries" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <div class="category-select" id="category-select">
+                            <div class="selected-option" data-value="other" data-icon="fas fa-tag">
+                                <i class="fas fa-tag"></i>
+                                <span>Select Category</span>
+                                <i class="fas fa-chevron-down dropdown-arrow"></i>
+                            </div>
+                            <div class="options">
+                                <div class="option" data-value="groceries" data-icon="fas fa-shopping-cart"><i class="fas fa-shopping-cart"></i> Groceries</div>
+                                <div class="option" data-value="utilities" data-icon="fas fa-bolt"><i class="fas fa-bolt"></i> Utilities</div>
+                                <div class="option" data-value="transport" data-icon="fas fa-car"><i class="fas fa-car"></i> Transport</div>
+                                <div class="option" data-value="salary" data-icon="fas fa-money-bill-wave"><i class="fas fa-money-bill-wave"></i> Salary</div>
+                                <div class="option" data-value="entertainment" data-icon="fas fa-film"><i class="fas fa-film"></i> Entertainment</div>
+                                <div class="option" data-value="other" data-icon="fas fa-tag"><i class="fas fa-tag"></i> Other</div>
+                            </div>
+                        </div>
+                    </div>
+                    <p id="form-error" class="error-message"></p>
+                    <div class="form-buttons">
+                        <button type="button" id="deposit-btn" class="btn deposit-btn">Deposit</button>
+                        <button type="button" id="withdraw-btn" class="btn withdraw-btn">Withdraw</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Transaction History -->
+            <section class="transaction-history-section">
+                <div class="history-header">
+                    <h3>Transaction History</h3>
+                    <button id="clear-history-btn" class="btn clear-btn">Clear All</button>
+                </div>
+                <div id="transaction-list">
+                    <!-- Transactions will be rendered here by JavaScript -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
